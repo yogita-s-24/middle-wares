@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from 'dotenv'
+import { gethealthApi } from "./controllers/health.js";
 
 dotenv.config();
 
@@ -7,12 +8,7 @@ const app = express();
 
 app.use(express.json());
 
-app.get("/healths", (req, res) => {
-  res.json({
-    success: true,
-    message: "Servers health is Good.",
-  });
-});
+app.get("/healths", gethealthApi);
 
 const checkApi = (req, res, next) => {
   const { apiKey } = req.query;
